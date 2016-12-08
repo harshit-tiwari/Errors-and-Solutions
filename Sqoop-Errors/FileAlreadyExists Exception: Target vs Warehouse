@@ -1,0 +1,38 @@
+#FileNotExists Exception in sqoop import command used with Target-Dir argument
+
+When we use target-dir argument in sqoop import command, the directory specified should not be created earlier. It should be a  
+non existent directory. This is beacuse sqoop creates a new directory at the path specified in the target-dir argument.
+
+Whereas when we use warehouse-dir argument, we should specify the path of a pre-existent directory. Sqoop treats this path as a 
+parent directory and creates subsequent directory with the name of the table import within the parent directory. Therefore warehouse-dir 
+is generally used with sqoop-import-all command. We specify a parent directory and a directory is then created for each table 
+within the parent directory.
+
+Example - 
+
+sqoop import \
+--connect jdbc:mysql://quickstart.cloudera:3306/retail_db \
+--username cloudera \
+--password cloudera \
+--table departments \
+--target-dir /user/cloudera/departments 
+
+#/user/cloudera/departments should not be present already
+
+
+sqoop-import-all \
+--connect jdbc:mysql://quickstart.cloudera:3306/retail_db \
+--username cloudera \
+--password cloudera \
+--table departments \
+--warehouse-dir /user/cloudera/imported_tables 
+
+# /user/cloudera/imported_tables is the patrent directory. Within it, different directories will be created like 
+
+/user/cloudera/imported_tables/departments
+/user/cloudera/imported_tables/categories
+/user/cloudera/imported_tables/orders
+.
+.
+.
+.
