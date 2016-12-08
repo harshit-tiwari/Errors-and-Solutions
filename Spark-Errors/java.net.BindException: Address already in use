@@ -21,3 +21,4 @@ This will display the following job statistics. This job is running at the port 
 Command --> sudo kill -9 PID    eg.. sudo kill -9 6303
 
 This kills the job running at the port. Now the spark job can be submitted and the above warning will not appear.
+
