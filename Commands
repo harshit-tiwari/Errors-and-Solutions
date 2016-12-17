@@ -1,0 +1,5 @@
+1. ps -ef|grep -i manager : Command to list all the services running on the cluster with the details
+
+2. ps -fu hdfs : Command to list information about namenode, datanode and secondary namenode
+
+3. ps -fu yarn : Command to list information about nodemanager and resourcemanager 
