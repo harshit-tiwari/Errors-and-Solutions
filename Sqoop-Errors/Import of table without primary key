@@ -1,7 +1,14 @@
-#If we import a table using sqoop from mysql and if the table does not have a primary key, then it fails if the 
+1. If we import a table using sqoop from mysql and if the table does not have a primary key, then it fails if the 
 sqoop import command uses more than 1 mapper. This is because the boundary value condition which is run by default in the 
 sqoop import command does not get a primary key and it is not able to divide the data between the number of mappers specified. 
 To avoid the failure of such table --> use number of mappers as 1.
                        
                             -m 1    or
                             --num-mappers 1
+                            
+                            
+                            
+2. If we insert any value in the hive table using insert into command, the data is inserted on the top of the table, whereas in Impala,
+the data is inserted at the bottom.
+
+
