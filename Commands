@@ -3,3 +3,5 @@
 2. ps -fu hdfs : Command to list information about namenode, datanode and secondary namenode
 
 3. ps -fu yarn : Command to list information about nodemanager and resourcemanager 
+
+4. hostname -f : Command to show the hostname of the distribution we are using. This can be used in the sqoop commands.
