@@ -62,6 +62,14 @@ Now make a change to this table in mysql as follows
   +----------------+-----------------+
   
 Now try to import only the updated value ie.. 1000 - updated.
-We may think of using lastmodified, but that doesn't work with a column which is not of type TimeStamp or Date.
+
+We may think of using lastmodified, but in this case, we will get an Error like this 
+    "Append mode for hive imports is not yet supported. Please remove the parameter --append-mode"
+
+this is because lastmodified append doesn't work with a column which is not of type TimeStamp or Date.
 If there is a table with a column TimeStamp or Date, lastmodified doesn't work in Hive, however it works in HDFS.
   
+
+Remedy to this -
+
+1. Create External table in Hive and sqoop import all the data to an external location.
