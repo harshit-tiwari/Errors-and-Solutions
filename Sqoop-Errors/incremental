@@ -1,0 +1,65 @@
+Let a table npk in mysql be as follows 
+
+  +---------------+-----------------+
+   | department_id | department_name | 
+   |2              | Fitness         |
+   |3              | Footwear        |
+   |4              | Apparel         |
+   |5              | Golf            |
+   |6              | Outdoors        |
+   |7              | Fan Shop        |
+  +----------------+-----------------+
+
+Import it in hive. 
+
+Now make the change to this table by inserting 2 rows at the bottom as follows.
+
+  +---------------+-----------------+
+   | department_id | department_name | 
+   |2              | Fitness         |
+   |3              | Footwear        |
+   |4              | Apparel         |
+   |5              | Golf            |
+   |6              | Outdoors        |
+   |7              | Fan Shop        |
+   |1000           | testing         |
+   |2000           | testing twice   |
+  +----------------+-----------------+
+  
+To import the newly inserted rows in hive table, we can do an incremental import, as follows
+  
+sqoop import \
+--connect jdbc:mysql://quickstart.cloudera:3306/retail_db \
+--username retail_dba \
+--password cloudera \
+--table npk \
+--hive-import \
+--hive-table retail_db.npk \
+--hive-home /user/hive/warehouse \
+--append \
+--incremental append \
+--check-column department_id \
+--last-value 7 \
+-m 1 \
+--outdir java_files
+
+This command will only import and append the last two rows which have been added to the table. It will not import the whole table 
+from mysql to hive.
+
+
+Now make a change to this table in mysql as follows 
+
+  +---------------+-----------------+
+   | department_id | department_name | 
+   |2              | Fitness         |
+   |3              | Footwear        |
+   |4              | Apparel         |
+   |5              | Golf            |
+   |6              | Outdoors        |
+   |7              | Fan Shop        |
+   |1000           | updated         |
+   |2000           | testing twice   |
+  +----------------+-----------------+
+  
+  
+  
