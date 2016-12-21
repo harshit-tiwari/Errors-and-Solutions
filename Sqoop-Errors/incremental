@@ -61,5 +61,7 @@ Now make a change to this table in mysql as follows
    |2000           | testing twice   |
   +----------------+-----------------+
   
-  
+Now try to import only the updated value ie.. 1000 - updated.
+We may think of using lastmodified, but that doesn't work with a column which is not of type TimeStamp or Date.
+If there is a table with a column TimeStamp or Date, lastmodified doesn't work in Hive, however it works in HDFS.
   
