@@ -72,4 +72,5 @@ If there is a table with a column TimeStamp or Date, lastmodified doesn't work i
 
 Remedy to this -
 
-1. Create External table in Hive and sqoop import all the data to an external location.
+1. Create External table in Hive and sqoop import all the data to an external location and make sure that we use lastmodified only
+for the table which has a column with type Date or TimeStamp.
